@@ -33,8 +33,8 @@ def select_category():
 
 
 def blank_words(optionlist):
-    option = optionlist
-    word = random.choice(option)
+    # word = "i dont know"
+    word = random.choice(optionlist)
     #print(f'word: {word}')
     lengthofword = len(word)
     #print(f'length: {lengthofword}')
@@ -43,10 +43,16 @@ def blank_words(optionlist):
     exposedletter = random.sample(word, k=numberofexposedletters)
     #print(f'letters: {exposedletter}')
     #print(type(numberofexposedletters))
-    blankcanvas = (lengthofword) * '_'
+    blankcanvas = lengthofword * '_'
     #print(blankcanvas)
     #print(word.index(exposedletter[0]))
     listedcanvas = list(blankcanvas)
+    count = int()
+    listedcanvas = list(blankcanvas)
+    for i in listedcanvas:
+        if word[count] == " ":
+            listedcanvas[count] = " "
+        count+=1
     #print(listedcanvas)
     for i in exposedletter:
         #print(f' Word is: {i} index is:{word.index(i)}')
@@ -114,6 +120,7 @@ def final_game(data):
             canvas.itemconfig(rightleg, state='normal')
             messagebox.showinfo("Sorry", "You've ran out of chances")
             entry.config(state=tk.DISABLED)
+            window.quit()
 
     window = tk.Tk()
     window.title("Guess the word")
